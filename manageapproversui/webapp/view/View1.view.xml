@@ -1,0 +1,80 @@
+<mvc:View controllerName="uk.co.brakes.rf.manageapproversui.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:micro="sap.suite.ui.microchart"
+    xmlns:main="sap.ui.webc.main"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:fb="sap.ui.comp.filterbar">
+     <Page id="page" showHeader="false" backgroundDesign="Solid" class="whitePage">
+        <l:VerticalLayout id="containerLayout" width="100%" class="sapUiContentPadding">
+            <l:content>
+            <fb:FilterBar id="apporverFb" background="solid" useToolbar="false" search="onUserSearch" showFilterConfiguration="false">
+                    <fb:filterItems>
+                        <fb:FilterItem name="plantFilter" label="Plant">
+                            <fb:control>
+                                    <ComboBox
+                                        id="plantCombobox"
+                                        placeholder="Enter Plant"
+                                        change="onSelectPlant"
+                                        items="{ path: 'oPlantsModel>/'}">
+                                        <core:Item key="{path: 'oPlantsModel>Plant'}" text="{path: 'oPlantsModel>Plant'} - {path: 'oPlantsModel>Description'}" />
+                                    </ComboBox>
+                            </fb:control>
+                        </fb:FilterItem>
+                        <fb:FilterItem name="userNameFilter" label="User Name" class="labelColor">
+                            <fb:control>
+                                <Input id="userNameInput" placeholder="Search by first/last name" search="onSearchUser"></Input>
+                            </fb:control>
+                        </fb:FilterItem>
+                    </fb:filterItems>
+            </fb:FilterBar>
+            <Table sticky="ColumnHeaders" items="{path: 'oApproversModel>/'}" class="transparentTableHeader" id="approversTable"  growing="true" growingThreshold="100" updateStarted="onTableUpdateStarted" alternateRowColors="true">
+                <headerToolbar>
+					<OverflowToolbar>
+						<Title text="Approvers" level="H2" class="labelColor"/>
+						<ToolbarSpacer/>
+						<Button icon="sap-icon://add" type="Emphasized" press="onAddApprover"/>
+					</OverflowToolbar> 
+                </headerToolbar>       
+                <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Input value="{path: 'oApproversModel>PLANT_DESC'} ({path: 'oApproversModel>PLANT'})" editable="false" class="purpleText" />
+                                <Input value="{path: 'oApproversModel>APPR_FNAME'}" editable="false" class="purpleText" />
+                                <Input value="{path: 'oApproversModel>APPR_LNAME'}" editable="false" class="purpleText" />
+                                <Input value="{path: 'oApproversModel>APPR_ID'}" editable="false" class="purpleText" /> 
+                                <Input value="{path: 'oApproversModel>APPR_EMAIL'}" editable="false" class="purpleText" /> 
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                    <columns>
+								<Column width="15%">
+									<Text text="Plant"/>
+								</Column>
+								<Column width="15%">
+									<Text text="First Name"/>
+								</Column>
+								<Column width="15%">
+									<Text text="Last Name"/>
+								</Column>
+								<Column width="15%">
+									<Text text="ID"/>
+								</Column>
+								<Column width="15%">
+									<Text text="Email id"/>
+								</Column>
+								<Column width="5%">
+								</Column>
+								<Column width="7%">
+								</Column>
+							</columns>
+                </Table>
+            </l:content>
+        </l:VerticalLayout>
+    </Page>
+</mvc:View>
