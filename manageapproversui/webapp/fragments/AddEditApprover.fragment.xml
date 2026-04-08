@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:com="sap.suite.ui.commons" xmlns:f="sap.f" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form">
+    <Dialog class="sapUiContentPadding customDialog" title="{/title}" minHeight="400px">
+        
+        <l:VerticalLayout width="100%">
+			<!--Label text="ID"/-->
+            <HBox>
+                <Input id="ipDialogApproverID" value="{/approver}" placeholder="Enter approver's ID" change="onApproverChange" enabled="{/approverIDInputEnabled}"/>
+                <Button text="Show Details" class="sapUiSmallMarginBegin" press="fetchApproverDetails" enabled="{/showUserDetailsBtnEnabled}"/>
+            </HBox>
+			
+            <VBox id="vbApproverDetails" visible="{/showApproverDetails}" alignContent="Center" alignItems="Center" fitContainer="true" justifyContent="Center" class="name sapUiSmallMarginTop sapUiSmallMarginBottom">
+                <HBox>
+                    <Title id="ttDialogApproverFName" text="{/fname}" />
+                    <Title id="ttDialogApproverLName" text="{/lname}" class="sapUiTinyMarginBegin"/>
+                </HBox>
+                <Text id="ttDialogApproverEmail" text="{/email}"/>  
+            </VBox>   
+
+            <VBox id="plantAddEdit" visible="{/showApproverDetails}">
+                <Label text="Plant"/>
+                <ComboBox id="plantComboboxAddEdit" width="100%" placeholder="Select Plant" change="onSelectPlant" items="{ path: 'oPlantsModel>/'}" selectedKey="{/plant}">
+                    <core:Item key="{path: 'oPlantsModel>Plant'}" text="{path: 'oPlantsModel>Plant'} - {path: 'oPlantsModel>Description'}"/>
+                </ComboBox>
+            </VBox>              
+        </l:VerticalLayout>
+
+        <buttons>
+            <Button text="Confirm" type="Accept" press="addEditApproverDialogConfirm" visible="{/showConfirm}"/>
+            <Button text="Add" type="Accept" press="createApprover" visible="{= ! ${/showConfirm}}"/>
+            <Button text="Close" type="Default" press="addEditApproverDialogClose"/>
+        </buttons>
+
+    </Dialog>
+</core:FragmentDefinition>

@@ -15,6 +15,12 @@
       "destination": "ui5"
     },
     {
+      "source": "^/brakesgw/(.*)$",
+      "target": "$1",
+      "destination": "brakesgw",
+      "csrfProtection": false
+    },
+    {
       "source": "^/brakesgwpp/(.*)$",
       "target": "$1",
       "destination": "brakesgwpp",

@@ -12,3 +12,16 @@
     padding-bottom: 0rem; 
     box-sizing: border-box;
 }
+
+.name {
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.09), 0 6px 20px 0 rgba(0, 0, 0, 0.09);*/
+    text-align: center;
+    border-radius: 15px;
+    padding:5px;
+  }
+
+  .sapUiSizeCompact.sapMDialog, .sapUiSizeCompact .sapMDialog .customDialog{
+    min-height: 15rem;
+    padding-bottom: 2.5rem;
+    padding-top: 2.5rem;
+}
